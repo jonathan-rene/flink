@@ -19,17 +19,10 @@
 name: "Flink CI (beta)"
 
 on:
-  push:
-    tags:
-      - '*'
+  pull_request:
+    branches: [ master ]
   workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Run on tag'
-        required: true
-        default: 'latest'
-        options:
-          - release-1.20.0
+    secrets: inherit
 
 permissions: read-all
 

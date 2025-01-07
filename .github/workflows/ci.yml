@@ -20,7 +20,16 @@ name: "Flink CI (beta)"
 
 on:
   push:
+    tags:
+      - '*'
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Run on tag'
+        required: true
+        default: 'latest'
+        options:
+          - release-1.20.0
 
 permissions: read-all
 
@@ -34,7 +43,3 @@ jobs:
     with:
       environment: 'PROFILE="-Dinclude_hadoop_aws"'
       jdk_version: 11
-    secrets:
-      s3_bucket: ${{ secrets.IT_CASE_S3_BUCKET }}
-      s3_access_key: ${{ secrets.IT_CASE_S3_ACCESS_KEY }}
-      s3_secret_key: ${{ secrets.IT_CASE_S3_SECRET_KEY }}

@@ -298,6 +298,7 @@ public class RowTimeRangeBoundedPrecedingFunction<K>
             if (null != retractInputs) {
                 Long dataTs = timestamp - precedingOffset;
                 inputState.remove(dataTs);
+                pendingRetractState.remove(timestamp);
             }
             // update the value of accumulators for future incremental computation
             accumulators = function.getAccumulators();
